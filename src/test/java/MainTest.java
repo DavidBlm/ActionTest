@@ -8,11 +8,13 @@ public class MainTest {
     public void testMethod() {
         Main main = new Main();
         assertEquals(3, main.a());
+        System.out.println("Test 1");
     }
 
     @Test
     public void testMethod2() {
         Main main = new Main();
-        assertNotEquals(1, main.a());
+        assertNotEquals(0, main.a());
+        System.out.println("Test 2");
     }
 }
