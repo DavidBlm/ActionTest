@@ -1,0 +1,17 @@
+name: Gradle Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: ghcr.io/davidblm/my-gradle-image:latest  # 👈 Use your custom Docker image
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Grant execute permissions to gradlew
+        run: chmod +x gradlew
+
+      - name: Run Gradle Build
+        run: ./gradlew build
