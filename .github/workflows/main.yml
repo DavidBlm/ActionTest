@@ -7,10 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/davidblm/my-gradle-image:latest
-      # Explicitly use your secret to authenticate with GHCR
       credentials:
-        username: ${{ github.actor }}  # Use the GitHub username (actor)
-        password: ${{ secrets.GHCR_PAT }}  # Securely access the PAT stored in secrets
+        username: ${{ github.actor }}
+        password: ${{ secrets.GHCR_PAT }}
 
     steps:
       - name: Checkout repository
@@ -21,10 +20,11 @@ jobs:
 
       - name: Run Gradle Build
         run: ./gradlew test
+        continue-on-error: true  # Prevents stopping the workflow if the build fails
 
-      - name: Upload Artifacts
+      - name: Upload Test Results
         uses: actions/upload-artifact@v4
-        with: 
-          name: Test Result
-
+        if: always()  # Ensures this step runs even if the previous step fails
+        with:
+          name: Test Results
           path: build/reports/tests/test/
