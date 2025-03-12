@@ -27,4 +27,4 @@ jobs:
         with: 
           name: Test Result
 
-          path: build/reports/tests/test
+          path: build/reports/tests/test/
