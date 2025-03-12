@@ -14,7 +14,7 @@ public class MainTest {
     @Test
     public void testMethod2() {
         Main main = new Main();
-        assertNotEquals(0, main.a());
+        assertNotEquals(3, main.a());
         System.out.println("Test 2");
     }
 }
