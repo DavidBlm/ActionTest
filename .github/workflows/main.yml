@@ -5,7 +5,13 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: ghcr.io/davidblm/my-gradle-image:latest  # 👈 Use your custom Docker image
+    container:
+      image: ghcr.io/davidblm/my-gradle-image:latest
+      # Use GitHub's built-in token for authentication
+      credentials:
+        username: ${{ github.actor }}  # Username from the workflow context
+        password: ${{ secrets.GITHUB_TOKEN }}  # GitHub's built-in token for authentication
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
