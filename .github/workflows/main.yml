@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/davidblm/my-gradle-image:latest
-      # Use GitHub's built-in token for authentication
+      # Explicitly use your secret to authenticate with GHCR
       credentials:
-        username: ${{ github.actor }}  # Username from the workflow context
-        password: ${{ secrets.GITHUB_TOKEN }}  # GitHub's built-in token for authentication
+        username: ${{ github.actor }}  # Use the GitHub username (actor)
+        password: ${{ secrets.GHCR_PAT }}  # Securely access the PAT stored in secrets
 
     steps:
       - name: Checkout repository
